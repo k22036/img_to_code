@@ -1,4 +1,6 @@
 .env
 .python-version
 img/*
+input_pdf/*
 output/*
+__pycache__
