@@ -14,10 +14,22 @@ GOOGLE_API_KEY=your_api_key
 pip install -r requirements.txt
 ```
 
+## brew install (Mac)
+
+```zsh
+brew install poppler
+```
+
+## 初期化
+
+- initial.pyを実行してください
+
 ## 仕様
 
-- imgディレクトリに画像を入れる
-- 画像のファイル名が test.js.png だと出力ファイル名は test.js となる
+- input_pdfにpdfを入れるとコードが抽出される
+
+<!-- - imgディレクトリに画像を入れる
+- 画像のファイル名が test.js.png だと出力ファイル名は test.js となる -->
 
 ## 参考
 
