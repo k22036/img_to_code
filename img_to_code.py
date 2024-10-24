@@ -13,22 +13,35 @@ genai.configure(api_key=GOOGLE_API_KEY)
 
 gemini_flash = genai.GenerativeModel(model_name="gemini-1.5-flash")
 
-img_dir_path = "img"
-img_files = os.listdir(img_dir_path)
+img_dir_path = "img/split_dir"
+dirs_in_img = os.listdir(img_dir_path)
+dirs_in_img = [dir for dir in dirs_in_img if os.path.isdir(
+    f"{img_dir_path}/{dir}")]
 output_files = os.listdir("output")
 
+img_files = []
+for dir in dirs_in_img:
+    img_files += [f"{dir}/{file}" for file in os.listdir(
+        f"{img_dir_path}/{dir}")]
+
 for img_file in img_files:
-    time.sleep(3)
+    time.sleep(2)
     while True:
         try:
-            output_name = ".".join(img_file.split(".")[:-1])
+            output_name = ".".join(img_file.split('/')[-1].split(".")[:-1])
 
             if ".DS_Store" in img_file or output_name in output_files:
                 break
 
             img = PIL.Image.open(f"{img_dir_path}/{img_file}")
             prompt = [
-                "次の画像に含まれるプログラムのコードを正確に文字起こしし、以下の形式で出力してください。\n・出力は必ずコードブロックを使い、画像のコードと完全に一致させること。", img]
+                """
+                Please accurately transcribe the program code contained in the following image and present it in the specified format:
+                - Use a code block for the output.
+                - Ensure the transcribed code exactly matches the code in the image, including all syntax, indentation, and formatting.
+                """,
+                img
+            ]
             response = gemini_flash.generate_content(prompt)
 
             # 出力のコードの部分だけをファイルに出力
@@ -44,3 +57,4 @@ for img_file in img_files:
                 continue
             elif ".DS_Store" in str(e):
                 break
+        break
