@@ -4,3 +4,5 @@ img/*
 input_pdf/*
 output/*
 __pycache__
+
+.idea

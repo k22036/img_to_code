@@ -4,7 +4,7 @@ from modules import det_name as detection
 from modules import move_dir as move
 
 
-filename = "RSS.pdf"
+filename = "LINK.pdf"
 
 
 def main():
@@ -19,7 +19,10 @@ def main():
     image_dir = 'img/temp/'
     output_dir = 'img/code_img/'
     file_name = "code_img"
-    crop_area = (118, 0, 1600, 2195)
+    # upper
+    # crop_area = (118, 0, 1600, 2195)
+    # under
+    crop_area = (175, 0, 1530, 2165)
 
     print("call: crop")
     res = crop.crop(image_dir, output_dir, file_name, crop_area)
@@ -28,7 +31,10 @@ def main():
     image_dir = 'img/temp/'
     output_dir = "img/name_img/"
     file_name = "name_img"
-    crop_area = (0, 0, 850, 110)
+    # upper
+    # crop_area = (0, 0, 850, 110)
+    # under
+    crop_area = (175, 2175, 1560, 2250)
 
     print("call: crop")
     res = crop.crop(image_dir, output_dir, file_name, crop_area)
